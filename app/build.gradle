@@ -1,14 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 buildscript {
     repositories {
         jcenter()
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
-    }
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:' + project.ext.retrolambdaVersion
     }
 }
 
@@ -58,10 +54,6 @@ task version {
     }
 }
 
-retrolambda {
-    jvmArgs '-noverify'
-}
-
 android {
     compileSdkVersion project.ext.compileSdkVersion
     buildToolsVersion project.ext.buildToolsVersion
@@ -97,28 +89,28 @@ dependencies {
     implementation project(':data')
     implementation project(':device')
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:" + project.ext.supportLibVersion
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:" + project.ext.supportLibVersion
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:' + project.ext.mockitoVersion
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
 
     annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
-    compile 'com.google.dagger:dagger:2.14.1'
+    implementation 'com.google.dagger:dagger:2.14.1'
 
-    compile 'com.annimon:stream:' + project.ext.streamsVersion
-    compile 'io.reactivex:rxjava:' + project.ext.rxJavaVersion
-    compile 'io.reactivex:rxandroid:' + project.ext.rxAndroidVersion
+    implementation 'com.annimon:stream:' + project.ext.streamsVersion
+    implementation 'io.reactivex:rxjava:' + project.ext.rxJavaVersion
+    implementation 'io.reactivex:rxandroid:' + project.ext.rxAndroidVersion
 
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile "com.android.support:design:" + project.ext.supportLibVersion
-    compile "com.android.support:recyclerview-v7:" + project.ext.supportLibVersion
-    compile "com.android.support:cardview-v7:" + project.ext.supportLibVersion
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation "com.android.support:design:" + project.ext.supportLibVersion
+    implementation "com.android.support:recyclerview-v7:" + project.ext.supportLibVersion
+    implementation "com.android.support:cardview-v7:" + project.ext.supportLibVersion
 
-    compile 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
 
-    compile 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
 }
