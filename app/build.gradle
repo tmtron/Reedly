@@ -12,7 +12,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def getEnvironmentVariable(String variableName, int defaultValue) {
+static def getEnvironmentVariable(String variableName, int defaultValue) {
     String environmentVariable = System.getenv(variableName)
     if (environmentVariable != null) {
         return Integer.parseInt(environmentVariable)
@@ -21,28 +21,28 @@ def getEnvironmentVariable(String variableName, int defaultValue) {
     }
 }
 
-def getVersionMajor() {
+static def getVersionMajor() {
     return getEnvironmentVariable('VERSION_MAJOR', 1)
 }
 
-def getVersionMinor() {
+static def getVersionMinor() {
     return getEnvironmentVariable('VERSION_MINOR', 0)
 }
 
-def getVersionPatch() {
+static def getVersionPatch() {
     return getEnvironmentVariable('VERSION_PATCH', 0)
 }
 
 // bump for dogfood builds, public betas, etc.
-def getVersionBuild() {
+static def getVersionBuild() {
     return getEnvironmentVariable('BUILD_NUMBER', 0)
 }
 
-def buildVersionCode() {
+static def buildVersionCode() {
     return getVersionMajor() * 10000000 + getVersionMinor() * 100000 + getVersionPatch() * 1000 + getVersionBuild()
 }
 
-def buildVersionName() {
+static def buildVersionName() {
     return "${getVersionMajor()}.${getVersionMinor()}.${getVersionPatch()}"
 }
 
@@ -95,8 +95,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
 
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
-    implementation 'com.google.dagger:dagger:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    implementation 'com.google.dagger:dagger:2.15'
 
     implementation 'com.annimon:stream:' + project.ext.streamsVersion
     implementation 'io.reactivex:rxjava:' + project.ext.rxJavaVersion
